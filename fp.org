@@ -1,0 +1,84 @@
+* Why FP?
+** The way programming
+*** Math oriented, intuiative
+*** Less typing
+** Parallel programming
+* Some point:
+** stream
+** lazy loading
+** gc
+** tradional algo
+** message passing
+* History
+** lambda calculus
+** LISP, FP
+** ML(OCAML), Miranda, Scheme(The lambda paper, SICP)
+** intuitionistic type theory, interactive theorem proving
+
+* Concepts
+** First-class and higher-order function
+*** curring
+** Pure functions
+*** no side effect
+*** memoization
+*** if no data dependency between two pure functions, their order can be reversed: thread-safe
+*** deforestation
+** Recursion
+*** stack
+*** tail recursion (continuation passing style)
+*** folds and unfolds (reduce and map)
+** Strict vs non-strict evaluation
+*** non-strict evaluation: graph reduction
+** Type systems, polymorphism, algebraic datatypes and pattern matching
+*** Hindley-Milner type inference (1970s)
+*** typed lambda calculus (ML, Haskell)
+*** untyped lambda calculus (Lisp, scheme)
+*** algebraic datatypes
+*** pattern matching
+*** type inference
+*** generalized algebraic data types (GADT's)
+** Functional programming in non-functional languages
+*** C++: [[http://www-static.cc.gatech.edu/~yannis/fc%2B%2B/][FC++]]
+*** C: function pointer
+*** C#: [[http://msdn.microsoft.com/en-us/magazine/ee309512.aspx][Functional Programming for Everyday .NET Development]]
+*** Java: anonymouse classes
+* Functional vs Imperative
+** Simulate state
+*** [[http://en.wikipedia.org/wiki/Monad_(functional_programming)][monads]]
+** Efficiency
+*** [[http://shootout.alioth.debian.org/u32/benchmark.php][Benchmarks]]
+** Coding style
+*** imperative: series of steps
+*** functional: composition and arrangement of functions
+* Industry Use
+** [[http://doi.acm.org/10.1145/1238844.1238850][Erlang]] used by facebook
+** [[http://en.wikipedia.org/wiki/Objective_Caml][Objective Caml]] used in [[http://journals.cambridge.org/action/displayAbstract?aid%3D1899164][Wall Street]]
+** [[http://www.haskell.org/haskellwiki/Haskell_in_industry][Haskell in industry]]
+** [[http://www.scala-lang.org/node/1008][Scala in twitter]]
+* fp:
+** scheme, lisp
+** ML
+** Heskell
+** scala, clojure
+* Characteristics
+** no side effect
+** functions as first class
+** composition of functions
+** type inference
+* Application of functions vs. Changes in state [[/home/lee/manu/fp/Conception,%20evolution,%20and%20application%20of%20functional%20programming%20languages.pdf][Conception, evolution, and application of functional programming languages]]
+* Waiting:
+[[http://en.wikipedia.org/wiki/Lambda_calculus][lambda calculus]]
+[[http://en.wikipedia.org/wiki/Lambda_Papers#The_Lambda_Papers][The lambda papers]]
+[[http://en.wikipedia.org/wiki/Intuitionistic_type_theory][intuitionistic type theory]]
+[[http://en.wikipedia.org/wiki/Interactive_theorem_proving][interactive theorem proving]]
+[[http://en.wikipedia.org/wiki/Purely_functional][purely functional]]
+[[http://en.wikipedia.org/wiki/Currying][currying]]
+[[http://en.wikipedia.org/wiki/Deforestation_(computer_science)][Deforestation]]  [[/home/lee/manu/fp/deforest.ps][Wadler's pdf]]
+[[http://en.wikipedia.org/wiki/Continuation_passing_style][continuation passing style]]
+[[http://en.wikipedia.org/wiki/Graph_reduction][graph reduction]]
+[[http://en.wikipedia.org/wiki/Hindley%E2%80%93Milner_type_inference#algorithm][Hindley-Milner type inference algorith]]
+[[http://en.wikipedia.org/wiki/Algebraic_datatypes][Algebraic data type]]
+[[http://en.wikipedia.org/wiki/Pattern_matching][Pattern matching]]
+[[http://en.wikipedia.org/wiki/Type_inference][Type inference]]
+[[http://en.wikipedia.org/wiki/Generalized_algebraic_data_type][Generalized algebraic data type]]
+[[http://www.haskell.org/all_about_monads/html/][All About Monads (Heskell)]]
