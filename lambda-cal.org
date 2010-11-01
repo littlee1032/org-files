@@ -1,0 +1,37 @@
+* [[http://en.wikipedia.org/wiki/Lambda_calculus][Lambda-calculus]]
+* History [%}
+** TODO [[/home/lee/manu/fp/History%20of%20Lambda-calculus%20and%20Combinatory%20Logic.pdf][History of Lambda-calculus and Combinatory Logic]]
+* Concepts
+** typed vs untyped
+*** untyped --> Lisp
+*** typed --> type systems
+** Lambda terms
+*** a Lambda term may be a variable, x;
+*** Lambda abstraction: if t is a Lambda term, and x is a variable, then lambda x.t is Lambda term.
+*** Application: if t and s are Lambda terms, then ts is a Lambda term
+** Alpha equivalence: the choice of the bound variable does not matter. lambda x.x is equal to lambda y.y
+** Capture-avoiding subsitutions
+*** x[x:=r] = r
+*** y[x:=r] = y
+*** (ts)[x:=r] = (t[x:=r])(s[x:=r])
+*** (lambda x.t)[x:=r] = lambda x.t
+*** (lambda y.t)[x:=r] = lambda y.(t[x:=r]) if x != y and y is not in the free variables of r (y is fresh for r)
+** Beta reduction: (lambda x.t)s --> t[x:=s]
+* Reduction
+** alpha-conversion: changing bound varaibles
+** beta-conversion: applying functions to their arguments
+** eta-conversion: captures a notion of extensions
+* Arithmetic in Lambda calculus
+** Church Numerals
+*** 0 := lambda fx.x
+*** 1 := lambda fx.f x
+*** 2 := lambda fx.f (f x)
+*** 3 := lambda fx.f (f f (f x))
+*** SUCC := lambda nfx.f(n f x)
+*** PLUS := lambda mnfx.m f (n f x)
+*** MULT := lambda mnf.m (n f)
+*** POW := lambda be.e b
+*** PRED := lambda nfx.n (lambda gh.h (g f))(lambda u.x)(lambda u.u)
+*** SUB := lambda mn.n PRED m
+* Waiting
+[[/home/lee/manu/fp/Programming%20Languages%20and%20Lambda%20Calculi.pdf][Programming Languages and Lambda Calculi]]
