@@ -33,5 +33,18 @@
 *** POW := lambda be.e b
 *** PRED := lambda nfx.n (lambda gh.h (g f))(lambda u.x)(lambda u.u)
 *** SUB := lambda mn.n PRED m
+* Lambda calculus and programming languages
+** raise the complexity when implementing lambda calculus. [[http://en.wikipedia.org/wiki/Funarg_problem][Funarg problem]]
+** using a virtual machine approach.
+* Reduction strategies
+** Full beta reductions: Any redex can be reduced at any time.
+** Applicative order: leftmost, innermost.
+** Normal order: leftmost, outermost.
+** Call by name: normal order, but no reductions are performed inside abstractions.
+** Call by value: Only the outermost redexes are reduced: a redex is reduced only when its right hand side has reduced to a value.
+** Call by need: normal order, but function applications that would duplicate terms instead name the argument, which is then reduced onl "when it is needed". In implementations this "name" takes the form of a pointer, with the redex represented by a thunk.
+
 * Waiting
 [[/home/lee/manu/fp/Programming%20Languages%20and%20Lambda%20Calculi.pdf][Programming Languages and Lambda Calculi]]
+[[http://en.wikipedia.org/wiki/Church-Turing_thesis][Church Turing Thesis]]
+[[http://portal.acm.org/citation.cfm?id%3D363749&coll%3Dportal&dl%3DACM][A Correspondence between ALGOL 60 and Church's Lambda-notation]]
