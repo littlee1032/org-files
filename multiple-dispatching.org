@@ -1,0 +1,10 @@
+* Multiple Dispatch
+** argument type is determined at runtime.
+** all the arguments is equally treated.
+* Java is single dispatched
+** method argument is decided at compile time
+** this pointer(or thisObject) is treated dominated.
+* Why we need multiple dispatch?
+** it help us to deal with the relationship between two different object. In the real time, the behavior which happened when two object meet is not only decided by one, but two.
+** We may use vistor pattern to act as the multiple dispatch in Java. But we need to know all the type of the object.
+** MultiJava is the extension for the java.
