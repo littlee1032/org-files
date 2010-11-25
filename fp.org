@@ -1,7 +1,7 @@
 * Why FP?
 ** The way programming
 *** Math oriented, intuiative
-*** Less typing
+*** Less typing (examples?)
 ** Parallel programming
 * Some point:
 ** stream
@@ -14,7 +14,6 @@
 ** LISP, FP
 ** ML(OCAML), Miranda, Scheme(The lambda paper, SICP)
 ** intuitionistic type theory, interactive theorem proving
-
 * Concepts
 ** First-class and higher-order function
 *** curring
