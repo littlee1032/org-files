@@ -1,0 +1,15 @@
+mlmv-dev (Da Vinci Machine Project)
+[[http://mail.openjdk.java.net/mailman/listinfo/mlvm-dev][mailing list]]
+[[http://jcp.org/en/jsr/detail?id%3D292][jsr 292]]
+[[http://wikis.sun.com/display/mlvm/Home][Home page]]
+[[http://mail.openjdk.java.net/pipermail/mlvm-dev/][mailing list archive]]
+[[http://openjdk.java.net/projects/mlvm/subprojects.html][subprojects]]
+
+
+[[http://blogs.sun.com/gbracha/entry/invokedynamic][invokedynamic]]
+[[http://blog.headius.com/2008/09/first-taste-of-invokedynamic.html][invokedynamic]]
+
+[[http://en.wikipedia.org/wiki/Dynamic_typing#Dynamic_typing][Dynamic typing]]
+
+typed dynamic programming vs dynamic programming
+inheritance problem
