@@ -6,6 +6,10 @@ mlmv-dev (Da Vinci Machine Project)
 [[http://openjdk.java.net/projects/mlvm/subprojects.html][subprojects]]
 
 
+[[http://blog.headius.com/2007/01/invokedynamic-actually-useful.html][Actually Userful?]]
+
+[[http://blogs.sun.com/jrose/][John Rose blog]]
+
 [[http://blogs.sun.com/gbracha/entry/invokedynamic][invokedynamic]]
 [[http://blog.headius.com/2008/09/first-taste-of-invokedynamic.html][invokedynamic]]
 
