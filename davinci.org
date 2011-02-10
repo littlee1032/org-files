@@ -1,4 +1,4 @@
-mlmv-dev (Da Vinci Machine Project)
+mlvm-dev (Da Vinci Machine Project)
 [[http://mail.openjdk.java.net/mailman/listinfo/mlvm-dev][mailing list]]
 [[http://jcp.org/en/jsr/detail?id%3D292][jsr 292]]
 [[http://wikis.sun.com/display/mlvm/Home][Home page]]
@@ -12,6 +12,8 @@ mlmv-dev (Da Vinci Machine Project)
 [[http://blogs.sun.com/jrose/][John Rose blog (davinci project lead)]]
 [[http://blogs.sun.com/jrose/entry/bravo_for_the_dynamic_runtime][blog on Da Vinci Machine vs. Microsoft DLR/CLR]]
 
+[[http://blogs.sun.com/jrose/date/200407][John Rose blog First Entry]]http://blogs.sun.com/jrose/date/200407
+
 [[http://softonaut.blogspot.com/2008/02/building-openjdk-multi-language-vm-aka.html][How to build early Da Vinci Code]]
 [[http://blogs.sun.com/jrose/entry/anonymous_classes_in_the_vm][Anonymous Classes in the VM]]
 
@@ -20,7 +22,7 @@ mlmv-dev (Da Vinci Machine Project)
 
 [[http://en.wikipedia.org/wiki/Dynamic_typing#Dynamic_typing][Dynamic typing]]
 
-[[http://wikis.sun.com/display/mlvm/Home][Da Vinci Home]]
+[[http://cr.openjdk.java.net/~jrose/pres/indy-javadoc-mlvm/][mlvm spec]]
 
 typed dynamic programming vs dynamic programming
 inheritance problem
