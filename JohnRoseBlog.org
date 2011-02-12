@@ -1,3 +1,8 @@
+[[http://blogs.sun.com/jrose/entry/closures_without_function_types][Closures without Function Types]]
+* better closures and slightly better type parameters but not function types
+** Not Functions
+
+
 [[http://blogs.sun.com/jrose/entry/better_closures][Better Closures]]
 * Inner classes are imperfect closures
 ** inaccessible nonfinal local variables

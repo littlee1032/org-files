@@ -31,3 +31,5 @@ inheritance problem
 [[http://hgbook.red-bean.com/read/managing-change-with-mercurial-queues.html][mq]]
 [[http://hgbook.red-bean.com/read/][Mercurial online guide]]
 [[http://blogs.msdn.com/b/shrib/archive/2005/01/25/360370.aspx][Tail call performance on CLR]]
+[[http://fishbowl.pastiche.org/2003/05/16/closures_and_java_a_tutorial/][Closure and Java: a tutorial]]
+[[http://gafter.blogspot.com/2006/08/use-cases-for-closures.html][Use case of closures]]
