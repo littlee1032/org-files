@@ -9,3 +9,24 @@
 ** inaccessible statement labels
 ** bulky syntax
 ** shadowing by class and method scopes
+
+[[http://blogs.sun.com/jrose/entry/duck_typing_in_the_jvm][Duck Typing in the JVM]]
+* [[http://headius.blogspot.com/2007/01/invokedynamic-actually-useful.html][Invokedynamic vs duck typing]]
+** hotswapping is hard
+*** security model
+*** change on the content of a method only available for debuging
+*** change whole method (signature) is not available
+*** change the whole class, which has instance alive is in the open research
+** alternatives
+*** dynamic methods (like CLR)
+*** invoke dynamic: No target class constrains, no arg list constrains
+** invokedynamic whithout hotswapping
+*** defer the binding (linking)
+*** easy for generating code (No compiler warning)
+*** provide args, let vm to dispatch ?
+* Duck type in VM
+** Generality
+*** if unexpected arg appears, runtime system has a chance to fix it
+*** new class can appear, new method can be added
+** Keep Fast
+*** build the fast bridge if strong typed
