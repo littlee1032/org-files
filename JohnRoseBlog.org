@@ -30,3 +30,5 @@
 *** new class can appear, new method can be added
 ** Keep Fast
 *** build the fast bridge if strong typed
+* [[http://blogs.sun.com/jrose/entry/autonomous_methods_for_the_jvm][Autonomous Methods for the JVM]]
+(integrated into java7)
