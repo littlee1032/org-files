@@ -1,34 +1,89 @@
-[[http://blogs.sun.com/jrose/entry/closures_without_function_types][Closures without Function Types]]
-* better closures and slightly better type parameters but not function types
-** Not Functions
+* Closures without Function Types ([[http://blogs.sun.com/jrose/entry/closures_without_function_types][link]])
+** better closures and slightly better type parameters but not function types
+*** Not Functions
 
-
-[[http://blogs.sun.com/jrose/entry/better_closures][Better Closures]]
-* Inner classes are imperfect closures
-** inaccessible nonfinal local variables
-** inaccessible statement labels
-** bulky syntax
-** shadowing by class and method scopes
+* Better Closures ([[http://blogs.sun.com/jrose/entry/better_closures][link]])
+** Inner classes are imperfect closures
+*** inaccessible nonfinal local variables
+*** inaccessible statement labels
+*** bulky syntax
+*** shadowing by class and method scopes
 
 [[http://blogs.sun.com/jrose/entry/duck_typing_in_the_jvm][Duck Typing in the JVM]]
-* [[http://headius.blogspot.com/2007/01/invokedynamic-actually-useful.html][Invokedynamic vs duck typing]]
-** hotswapping is hard
-*** security model
-*** change on the content of a method only available for debuging
-*** change whole method (signature) is not available
-*** change the whole class, which has instance alive is in the open research
-** alternatives
-*** dynamic methods (like CLR)
-*** invoke dynamic: No target class constrains, no arg list constrains
-** invokedynamic whithout hotswapping
-*** defer the binding (linking)
-*** easy for generating code (No compiler warning)
-*** provide args, let vm to dispatch ?
-* Duck type in VM
-** Generality
-*** if unexpected arg appears, runtime system has a chance to fix it
-*** new class can appear, new method can be added
-** Keep Fast
-*** build the fast bridge if strong typed
-* [[http://blogs.sun.com/jrose/entry/autonomous_methods_for_the_jvm][Autonomous Methods for the JVM]]
+[[http://headius.blogspot.com/2007/01/invokedynamic-actually-useful.html][Invokedynamic vs duck typing]]
+*** hotswapping is hard
+**** security model
+**** change on the content of a method only available for debuging
+**** change whole method (signature) is not available
+**** change the whole class, which has instance alive is in the open research
+*** alternatives
+**** dynamic methods (like CLR)
+**** invoke dynamic: No target class constrains, no arg list constrains
+*** invokedynamic whithout hotswapping
+**** defer the binding (linking)
+**** easy for generating code (No compiler warning)
+**** provide args, let vm to dispatch ?
+** Duck type in VM
+*** Generality
+**** if unexpected arg appears, runtime system has a chance to fix it
+**** new class can appear, new method can be added
+*** Keep Fast
+**** build the fast bridge if strong typed
+
+* Autonomous Methods for the JVM ([[http://blogs.sun.com/jrose/entry/autonomous_methods_for_the_jvm][link]])
 (integrated into java7)
+
+
+* Anatomy of a call site ([[http://blogs.sun.com/jrose/entry/anatomy_of_a_call_site][link]])
+** Call, in forteen Parts
+*** bytecode instruction - the actual calling instruction in the bytecode stream
+*** symbolic name - a fixed identifier (a string)
+*** symbolic descriptor - a fixed tuple of argument and return types (a formatted string)
+*** symbolic type - a fixed symbolic reference to a type (class, array, or interface)
+*** symbolic method - symbolic reference to the method (if any) of the given symbolic type, name and descriptor
+*** resolved type - a fixed, loaded type with matches the symbolic type
+*** resolved method - a fixed, loaded method which matches the symbolic method
+*** receiver - optional, a variable object reference
+*** receiver type - optional, a variable class or array type, derived from the receiver
+*** arguments - a variable tuple of primitive or reference values (types derived from the descriptor)
+*** actual method - a variable method, the actual entry point of the call (not symbolic)
+*** return value - an optional variable primitive or reference value (type derived from the descriptor)
+*** thrown exception - an optional variable exception (or other throwable) produced instead of a return value
+*** exception handlers - zero or more continuation points in the same method, marked by exception types
+The resolved type is derived from the symbolic type at some point before the first execution of the call. Likewise, the resolved method is derived from the resolved type by searching for the given symbolic name and descriptor. 
+If these derivations fail, errors are raised, and the call is never executed. We shall generally pass over such errors with a respectful silence.
+** Determination of actual method
+*** invokespecial/static: actual method is resolved method
+*** invokevirtual/invokeinterface: actual method is derived from the resolved method by searching for an override in the receiver type.
+*** insure various type safety properties
+**** No actual method will be passed a receiver of an unexpected class
+**** If one method overrides another, the overriding method gets control first (except with invokespecial)
+**** The formal parameter types of every method may be trusted (except for interface types)
+**** In particular, if a formal parameter is a class, every actual argument will be that class or a subclass.
+*** A method M defined in a concrete class C overrides a method N in a class or interface B if the following are all true:
+**** C is a subtype of B
+**** C can access N
+**** M and N have identical names and descriptors
+**** C and B mean the same thing by every name in M's descriptor
+**** M and N are neither private or static
+**** N is not final
+
+
+* Bytecodes meet Combinators: invokedynamic on the JVM (pdf)
+** Multi-Language Method Calls
+    A language-specific notion of method or function invocation can often be analyzed into a linkage from a method use (call or invocation) to a method definition:
+*** a method name (Nu for the use, Nd for the definition)
+*** a scope in which to seek the method (Su) or define it (Sd)
+*** zero or more argument types (Au(i), i<|Au(*)|; Ad(j), j<|Ad(*)|)
+*** zero or more return value types (Ru(i), Rd(j)) (We assume there is one)
+*** a symbolic method reference Mu = <Su, Nu, Au(*), Ru(*)>
+*** access control contexts, if any (Cu, Cd)  (We assume Cu is *the* class)
+*** access permission Pd (public, private, protected, package)
+*** a method definition Md consistent with the Ad(*) and Rd(*)
+    In these terms, languages often need someof the following degree of freedom, beyand what Java and the JVM support:
+*** Nu mit differ from Nd (or Md might be nameless) : scheme define syntax
+*** Nd might be a symbolic entity other than a Java identifier : (Common Lisp package?)
+*** Su might differ from, and not be a subtype of, Sd
+
+* A & A:
+** symbolic vs resolved vs actual
