@@ -5,7 +5,7 @@ mlvm-dev (Da Vinci Machine Project)
 [[http://mail.openjdk.java.net/pipermail/mlvm-dev/][mailing list archive]]
 [[http://www.mail-archive.com/mlvm-dev%40openjdk.java.net/info.html][Mail search]]
 [[http://openjdk.java.net/projects/mlvm/subprojects.html][subprojects]]
-
+[[http://groups.google.com/group/jvm-languages][Jvm Languages google group]]
 
 [[http://blog.headius.com/2007/01/invokedynamic-actually-useful.html][Actually Userful?]]
 
@@ -13,6 +13,7 @@ mlvm-dev (Da Vinci Machine Project)
 [[http://blogs.sun.com/jrose/entry/bravo_for_the_dynamic_runtime][blog on Da Vinci Machine vs. Microsoft DLR/CLR]]
 
 [[http://blogs.sun.com/jrose/date/200407][John Rose blog First Entry]]http://blogs.sun.com/jrose/date/200407
+[[http://blogs.sun.com/jrose/entry/jsr_292_deep_dive_notes][Why]]
 
 [[http://softonaut.blogspot.com/2008/02/building-openjdk-multi-language-vm-aka.html][How to build early Da Vinci Code]]
 [[http://blogs.sun.com/jrose/entry/anonymous_classes_in_the_vm][Anonymous Classes in the VM]]

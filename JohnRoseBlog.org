@@ -68,7 +68,6 @@ If these derivations fail, errors are raised, and the call is never executed. We
 **** M and N are neither private or static
 **** N is not final
 
-
 * Bytecodes meet Combinators: invokedynamic on the JVM (pdf)
 ** Multi-Language Method Calls
     A language-specific notion of method or function invocation can often be analyzed into a linkage from a method use (call or invocation) to a method definition:
@@ -80,10 +79,40 @@ If these derivations fail, errors are raised, and the call is never executed. We
 *** access control contexts, if any (Cu, Cd)  (We assume Cu is *the* class)
 *** access permission Pd (public, private, protected, package)
 *** a method definition Md consistent with the Ad(*) and Rd(*)
-    In these terms, languages often need someof the following degree of freedom, beyand what Java and the JVM support:
+** Languages often need some of the following degree of freedom, beyond what Java and the JVM support:
 *** Nu mit differ from Nd (or Md might be nameless) : scheme define syntax
 *** Nd might be a symbolic entity other than a Java identifier : (Common Lisp package?)
 *** Su might differ from, and not be a subtype of, Sd
+*** Su and/or Sd might be something other than a class or interface
+*** two types Au(i), Ad(i) or Ru(i), Rd(i) might differ pairwise.
+*** types may differ in number: |Au(*)| <> |Ad(*)| or |Ru(*)| <> |Rd(*)|
+*** the class Cu might not have access permission to Pd in Cd
+** More option needed when link the method
+*** the linked-to entity Md might be an object instead of a method
+*** the initial linkage to Md may require specialized logic
+*** the call site may require occasional relinking to some Md' <> Md
+*** the call site may need to be reset to an unlinked state
+*** the call site may need to perform language-specific dispatch
+*** the call site may need to emulate a bytecode instruction
+** Reified Methods have Overrides
+*** extra bytecode and java data structures
+*** polluted profiles
+*** failed inlining
+** Invokedynamic
+** MethodHandler
+** Inline cache
+* [[http://blogs.sun.com/jrose/entry/tail_calls_in_the_vm][Tail Calls in VM]]
+** soft vs hard
+*** soft: elective optimization 
+*** hard: requires
+** VM verifier check:
+*** return signature is identical from callee and caller
+*** invoke instr is immediately followed by a return
+*** No exception handlers apply to the invoke instruction
+*** The caller is not synchronized
+*** The caller method is holding no object locks.
+*** The callee method is accessible and linkable from the caller method.
+* [[http://blogs.sun.com/jrose/entry/tuples_in_the_vm][Tulples in the VM]]
 
 * A & A:
 ** symbolic vs resolved vs actual
