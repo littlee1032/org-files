@@ -114,5 +114,8 @@ If these derivations fail, errors are raised, and the call is never executed. We
 *** The callee method is accessible and linkable from the caller method.
 * [[http://blogs.sun.com/jrose/entry/tuples_in_the_vm][Tulples in the VM]]
 
+* [[http://blogs.sun.com/jrose/entry/scope_ambiguities_between_outer_and][Scope ambiguities between outer and super]]
+* [[http://blogs.sun.com/jrose/entry/notes_on_an_architecture_for][Notes on Architecture for Invoke Dynamic]]
+
 * A & A:
 ** symbolic vs resolved vs actual
