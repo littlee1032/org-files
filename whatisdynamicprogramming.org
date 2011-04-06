@@ -14,4 +14,21 @@
 >>> print x
 Hello World
 >>>
-*** Mixins
+*** Mixins: an interface with method implemented
+**** Extend existing classes without any modification
+**** Keep component seperate
+**** No new classes created
+>>> class Person: pass
+... 
+>>> p = Person()
+>>> p.hello()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: Person instance has no attribute 'hello'
+>>> class Friendly:
+...     def hello(self):
+...             print "Hello World"
+... 
+>>> Person.__bases__ += (Friendly,)
+>>> p.hello()
+Hello World
