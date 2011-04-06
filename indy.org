@@ -1,0 +1,23 @@
+* The origin of Java
+** compact
+** secrutiy
+*** strong and static type
+*** compiler verifiable
+*** access control
+*** bootstrap contraints
+* Why not suitable for dynamic programming
+** current situation
+** pro and cons
+* How
+** AnonymousClassLoader (ACL)
+** invoke dynamic
+** MethodHandle
+*** vs traditional invoke
+*** bootstrap
+*** call site
+*** security
+*** dynamic features
+**** curry
+**** closure
+** Inline Caches
+** Autonomous Methods

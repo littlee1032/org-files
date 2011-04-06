@@ -1,0 +1,17 @@
+* Dynamic programing language
+** What is dynamic programming language
+*** Modification at runtime (class, object, method)
+*** Dynamic typed (mostly)
+** Is java a dynamic programming language?
+*** JIT inlining?
+*** JVMTI redefineClass?
+** Important characteristics
+*** eval, REPL(read-eval-print loop)
+>>> x = 1
+>>> print x
+1
+>>> x = "Hello World"
+>>> print x
+Hello World
+>>>
+*** Mixins
