@@ -1,0 +1,5 @@
+* osgi feature
+** application life cycle management
+** management of java package/classes in detail
+* jigsaw
+[[http://openjdk.java.net/projects/jigsaw/doc/draft-java-module-system-requirements-12][Java Module-System Requirement - DRAFT 12]]
