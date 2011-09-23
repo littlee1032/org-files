@@ -33,18 +33,6 @@ AttributeError: Person instance has no attribute 'hello'
 >>> p.hello()
 Hello World
 *** Closures:
-var f, g;
-function foo() {
-  var x = 0;
-  f = function() { return ++x; };
-  g = function() { return --x; };
-  x = 1;
-  alert('inside foo, call to f(): ' + f()); // "2"
-}
-foo();
-alert('call to g(): ' + g()); // "1"
-alert('call to f(): ' + f()); // "2"
-
 >>> def add_n(n):
 ...     def f(m):
 ...             return n+m
@@ -58,4 +46,75 @@ alert('call to f(): ' + f()); // "2"
 5
 >>> 
 
+def outer():
+    y = 0
+    def inner():
+        nonlocal y
+        y += 1
+        return y
+    return inner
+ 
+f = outer()
+print(f(), f(), f()) #prints 1 2 3
+
 **** what is closure? where is closure in java?
+*** Fuction language features
+**** Continuation
+(callcc (lambda (return)
+         (begin
+           (display "one")
+           (return #t)
+           (display "two")
+           #f)))
+one
+;Value: #t
+(define callcc call-with-current-continuation)
+(define (generate-one-element-atatime lst)
+    (define (control-state return)
+    (for-each
+            (lambda (element)
+                    (callcc
+                    (lambda (resume-here)
+                        (set! control-state resume-here)
+                        (return element)))
+            )
+            lst)
+    (return 'you-fell-off-the-end))
+    (define (generator)
+    (callcc control-state))
+    generator)
+(define generate-digit
+    (generate-one-element-atatime '(0 1 2 3 4 5 6 7 8 9)))
+(generate-digit)
+**** Lazy evaluation (call by need)
+object FibTest {
+  def fib(n: int): int = n match {
+    case 0 => 0
+    case 1 => 1
+    case _ => fib(n-1)+fib(n-2)
+  }
+}
+
+import Future._
+var a = lazy({ FibTest.fib(42) })
+Console.println(a)
+  => Lazy(?)
+a+1
+ => 267914297
+a+2
+ => 267914298
+
+**** Tail Recursion
+(define (fatorial n)
+  (if (= n 0)
+       1
+       (* n (factorial (- n 1)))))
+
+(define (factorial n)
+  (fact-iter 1 1 n))
+(define (fact-iter product counter max-count)
+  (if (> counter max-count)
+    product
+    (fact-iter (* counter product)
+               (+ counter 1)
+               max-count)))
