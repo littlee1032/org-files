@@ -1,0 +1,2 @@
+* Resources
+** [[https://wiki.scala-lang.org/display/SW/ScalaDays%2B2011%2BResources][Scala Days 2011]]
