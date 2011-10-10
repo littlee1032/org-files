@@ -1,2 +1,41 @@
+* What is scala? Why scala?
+* Learn scala
+** Value and variable
+** Function
+** Loop
+** Parameterize arrays
+** List
+** Tuple
+** Sets and maps
+** Functional style
+** Classes, fields and methods
+** Semicolon inference
+** Singleton object
+** Functions and Closures
+*** Methods
+*** Local functions
+*** First-class functions
+*** Short forms of function literals
+*** Placeholder syntax
+*** Parially applied functions
+*** Closures
+*** Special function call forms
+*** Tail recursion
+** Control Abstraction
+*** Curring
+*** By-name parameters
+** Composition and Inheritance
+*** Abstract class
+*** Extend class
+*** Override
+*** Polymorphism and dynamic binding
+** Scala hierarchy
+** Traits
+** Case class and pattern matching
+** Type parameterize
+** Abstract member
+** Implicit conversions and parameters
+** Implementing lists
+** Actor and concurrency
 * Resources
 ** [[https://wiki.scala-lang.org/display/SW/ScalaDays%2B2011%2BResources][Scala Days 2011]]
