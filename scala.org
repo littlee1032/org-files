@@ -1,26 +1,195 @@
 * What is scala? Why scala?
+** What is scala
+*** scale language: scripts -> big system
+**** seamless cooperate with java
+**** static type + OOP + FP
+** Why scala
+*** consie: less words, consie meaning
+    val capital = Map("US" -> "Washington")
+    capital += ("Japan" -> "Tokyo")
+    println(capital("US"))
+*** flexible: less word change
+*** barzaar: (cathedral vs barzaar)
+**** new type
+     def factorial(x: BigInt): BigInt =
+         if (x == 0) 1 else x * factorial(x-1)
+**** new control
+     actor {
+         var sum = 0
+         loop {
+             receive {
+                 case Data(bytes) => sum += hash(bytes)
+                 case GetSum(requester) => requester ! sum
+             }
+         }
+     }
 * Learn scala
 ** Value and variable
+   val msg = "Hello World"
+   var msg = "Hello World"
 ** Function
+   def max(x: Int, y: Int): Int = {
+       if (x > y) x
+       else y
+   }
+   def max(x: Int, y: Int) = if (x > y) x else y
+** Scripts
+   #!/bin/sh
+   exec scala "$0" "$@"
+   !#
+   println("Hello World")
 ** Loop
-** Parameterize arrays
-** List
-** Tuple
+   var i=0
+   while (i < args.length) {
+       println(args(i))
+       i += 1
+   }
+   args.foreach((arg: String) => println(arg))
+   args.foreach(println)
+** Parameterize arrays (mutable)
+   val greetStrings = new Array[String](3)
+   greetStrings(0) = "....." ....
+   for (i <- 0 to 2)
+     print(greetStrings(i))
+   val numNames = Array("zero", "one", "two")
+** List (immutable)
+   val oneTwoThree = List(1, 2, 3)
+   val four = List(4)
+   val oneTwoThreeFour = oneTwoThree ::: four
+   val oneTwoThree = 1 :: List(2, 3) = 1 :: 2 :: 3 :: Nil
+
+   val thrill = "Will" :: "fill" :: "until" :: Nil
+   thrill(2)
+   thrill.count(s=>s.length == 4)
+   thrill.drop(2)
+   thrill.dropRight(2)
+   thrill.exists(s=>s == "until")
+   thrill.filter(s=>s.length == 4)
+   thrill.forall(s=>s.endsWith("l"))
+   thrill.foreach(s=>print(s)) ....
+** Tuple (immutable)
+   val pair = (99, "ninetynine")
+   println(pair._1)
+   println(pair._2)
 ** Sets and maps
+*** Sets
+**** scala.collection.immutable.Set, scala.collection.mutable.Set
+**** scala.collection.immutable.HashSet, scala.collection.mutable.HashSet
+     var jetSet = Set("Boeing", "Airbus")
+     jetSet += "Aaaa"
+
+     val movieSet = Set("Despicable Me", "Singing in the Rain")
+     movieSet += "Flipped"
+*** Map
+**** scala.collection.immutable.Map, scala.collection.mutable.Map
+**** scala.collection.immutable.HashMap, scala.collection.mutable.HashMap
+     import scala.collection.mutable.Map
+     val treasureMap = Map[Int, String]()
+     treasureMap += (1 -> "Go to island.")
+     treasureMap += (2 -> "Find big X on ground")
+     treasureMap += (3 -> "Dig.")
 ** Functional style
+   def printArgs(args: Array[String]): Unit = {
+       var i = 0
+       while (i < args.length) {
+           println(args(i))
+           i += 1
+       }
+
+       for (arg <- args)
+           println(arg)
+
+       args.foreach(println)
+   }
+
 ** Classes, fields and methods
-** Semicolon inference
+   class A {
+       .....
+   }
+   val a = new A
+   class A {
+       private var sum = 0
+       def add(b: Byte): Unit = {
+           b = 1 //won't compile
+           sum += b
+       }
+
+       def add(b: Byte): Unit = sum += b
+       def add(b: Byte) { sum += b }
+   }
 ** Singleton object
+*** classes in Scala can not have static members. Scala has singleton objects
+    object A {
+        def someMethod() : Unit {
+        }
+    }
 ** Functions and Closures
 *** Methods
-*** Local functions
+*** Local functions (another solution for private)
+    def processFile(filename: String, width: Int) {
+      def processLine(filename: String/*, width: Int, line: String*/) {
+        if (line.length > width)
+          println(filename + ": " + line)
+      }
+      val source = Source.fromeFile(filename)
+      for (line <- source.getLines()) {
+        processLine(filename, width, line)
+      }
+    }
 *** First-class functions
+    var increase = (x: Int) => x + 1
+    increase(10)
 *** Short forms of function literals
+    someNumbers.filter((x: Int) => x > 0)
+    someNumbers.filter((x) => x > 0) (target typing)
+    someNumbers.filter(x => x > 0)
 *** Placeholder syntax
+    someNumber.filter(_ > 0)
+    val f = _ + _ (What's this?)
+    val f = (_: Int) + (_:Int)
 *** Parially applied functions
+    def sum(a: Int, b: Int, c: Int) = a+b+c
+    val a = sum _
+    a(1, 2, 3)  // a.apply(1, 2, 3)
+    val b = sum(1, _: Int, 3)
+    b(2)
 *** Closures
+    var more = 1
+    val addMore = (x: Int) => x + more
+    addMore(10) // 11
+    more = 9999
+    addMore(10) // 10009
+
+    val someNumbers = List(-11, -10, -5, 0 , 5, 10)
+    var sum = 0
+    someNumbers.foreach(sum += _)
+
+    def makeIncreaser(more: Int) = (x: Int) => x + more
+    makeIncreaser(10)
+    makeIncreaser(1000)
 *** Special function call forms
+**** Repeated parameters
+     def echo(args: String*) =
+       for (arg <- args) println(arg)
+**** Named arguments
+     def speed(distance: Float, time: Float): Float = distance / time
+     speed(distance = 100, time = 100)
+     speed(time = 10, distance = 100)
+**** Default parameter values
+     def printTime(out: java.io.PrintStream = Console.out) = 
+       out.println("time = " + System.currentTimeMillis())
 *** Tail recursion
+    def approximate(guess: Double): Double =
+      if (isGoodEnough(guess)) guess
+      else approximate(improve(guess))
+
+    def bang(x: Int): Int =
+      if (x == 0) throw new Exception("bang!")
+      else bang(x-1)
+
+    -g:notailcalls
+
+**** limited: indirect, method rename
 ** Control Abstraction
 *** Curring
 *** By-name parameters
