@@ -277,10 +277,62 @@
         throw new AssertionError
 
 ** Composition and Inheritance
+   val column1 = elem("hello") above elem("***")
+   val column2 = elem("***") above elem("world")
+   column1 beside column2
+
+   hello ***
+    *** world
 *** Abstract class
+abstract class Element {
+  def contents: Array[String]
+}
+**** no 'abstract' needed
+*** Defining parameterless methods
+abstract class Element {
+  def contents: Array[String]
+  def height: Int = contents.length
+  def width: Int = if (height == 0) 0 else contents(0).length
+}
+**** Uniform access priciple (Meyer, Object-Oriented Software Construction)
+     client code should not be affected by a decision
+to implement an attribute as a field or method.
+    it is encouraged style in Scala to define methods that take no
+parameters and have no side effects as parameterless methods, i.e., leaving
+off the empty parentheses.
 *** Extend class
+class ArrayElement(conts: Array[String]) extends Element {
+  def contents: Array[String] = conts
+}
 *** Override
-*** Polymorphism and dynamic binding
+in Scala, fields and methods belong to the same namespace
+
+class ArrayElement(conts: Array[String]) extends Element {
+  val contents: Array[String] = conts
+}
+
+Generally, Scala has just two namespaces for definitions in place of Java’s
+four. Java’s four namespaces are fields, methods, types, and packages. By
+contrast, Scala’s two namespaces are:
+• values (fields, methods, packages, and singleton objects)
+• types (class and trait names)
+
+*** Polymorphism and dynamic binding (subtyping polymorphism)
+abstract class Element {
+  def demo() {
+    println("Element's implementation invoked")
+  }
+}
+class ArrayElement extends Element {
+  override def demo() {
+    println("ArrayElement's implementation invoked")
+  }
+}
+class LineElement extends ArrayElement {
+  override def demo() {
+    println("LineElement's implementation invoked")
+  }
+}
 ** Scala hierarchy
 ** Traits
 ** Case class and pattern matching
