@@ -334,6 +334,25 @@ class LineElement extends ArrayElement {
   }
 }
 ** Scala hierarchy
+   Any, Nothing, Null
+*** Any
+**** == != equals (can == direct call equals?)
+**** ## hashCode (## different with hashCode?)
+**** toString
+*** AnyVal and AnyRef
+**** AnyVal
+***** Byte, Short, Char, Int, Long, Float, Double, Boolean
+      literal and final (can not new)
+      42 max 41
+      1 until 5
+      1 to 5
+***** Unit
+**** AnyRef (java.lang.Object)
+*** Null
+    null: subclass of every reference class
+*** Nothing
+    subclass of every other thing
+    (why we need nothing?)
 ** Traits
 ** Case class and pattern matching
 ** Type parameterize
