@@ -354,6 +354,85 @@ class LineElement extends ArrayElement {
     subclass of every other thing
     (why we need nothing?)
 ** Traits
+trait Philosophical {
+  def philosophize() {
+    println("I consume memory, therefore I am!")
+  }
+}
+
+class Frog extends Philosophical {
+  override def toString = "green"
+}
+
+class Animal
+trait HasLegs
+class Frog extends Animal with Philosophical with HasLegs {
+  override def toString = "green"
+}
+
+**** Traits vs class
+***** traits have no class parameters
+***** super (statically bound in class, dynamically bound in traits)
+**** Thin vs rich interfaces
+***** interface injection (trade-off)
+**** Stackable modifications
+     A queue of int:
+     1. Doubling
+     2. Incrementing
+     3. Filtering
+
+abstract class IntQueue {
+  def get(): Int
+  def put(x: Int)
+}
+import scala.collection.mutable.ArrayBuffer
+class BasicIntQueue extends IntQueue {
+  private val buf = new ArrayBuffer[Int]
+  def get() = buf.remove(0)
+  def put(x: Int) { buf += x }
+}
+
+trait Doubling extends IntQueue {
+  abstract override def put(x: Int) { super.put(2 * x) }
+}
+
+class MyQueue extends BasicIntQueue with Doubling
+
+trait Incrementing extends IntQueue {
+  abstract override def put(x: Int) { super.put(x + 1) }
+}
+trait Filtering extends IntQueue {
+  abstract override def put(x: Int) {
+    if (x >= 0) super.put(x)
+  }
+}
+
+val queue = (new BasicIntQueue with Incrementing with Filtering)
+queue.put(-1); queue.put(0); queue.put(1)
+queue.get() // 1
+queue.get() // 2
+
+Order is important.
+
+**** linearation
+class Animal
+trait Furry extends Animal
+trait HasLegs extends Animal
+trait FourLegged extends HasLegs
+class Cat extends Animal with Furry with FourLegged
+
+Animal ===> AnyRef ===> Any
+Furry ===> Animal ===> AnyRef ===> Any
+FourLegged ===> HasLegs ===> Furry ===> Animal ===> AnyRef ===> Any
+Cat ==> FourLegs ==> HasLegs ==> Furry ==> Animal ==> AnyRef ==> Any
+
+**** to trait, or not to trait
+***** If the behavior will not be reused, then make it a concrete class.
+***** If it might be reused in multiple, unrelated classes, make it a trait.
+***** If you want to inherit from it in Java code, use an abstract class.
+***** If you plan to distribute it in compiled form, and you expect outside groups to write classes inheriting from it, you might lean towards using an abstract class.
+***** If efficiency is very important, lean towards using a class.
+***** If you still do not know, after considering the above, then start by making it as a trait.
 ** Case class and pattern matching
 ** Type parameterize
 ** Abstract member
