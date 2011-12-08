@@ -524,8 +524,35 @@ def simplifyAdd(e: Expr) = e match {
   case BinOp("+", x, y) if x == y => BinOp("*", x, Number(2))
   case _ => e
 }
+*** The Option type
+**** Two forms of value: Some(x) and None
+val capitals =
+Map("France" -> "Paris", "Japan" -> "Tokyo")
+capitals get "France"
+capitals get "North Pole"
 
+def show(x: Option[String]) = x match {
+  case Some(s) => s
+  case None => "?"
+}
+show(capitals get "Japan")
+show(capitals get "North Pole")
 
+**** vs null in Java
+*** Pattern everywhere
+**** Patterns in variable definitions
+val myTuple = (123, "abc")
+val (number, string) = myTuple
+**** Case sequences as partial functions (more entries)
+val withDefault: Option[Int] => Int = {
+  case Some(x) => x
+  case None => 0
+}
+withDefault(Some(10))
+withDefault(None)
+**** Patterns in for expressions
+for ((country, city) <- capitals)
+  println("The capital of "+ country +" is "+ city)
 ** Type parameterize
 ** Abstract member
 ** Implicit conversions and parameters
