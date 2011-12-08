@@ -355,6 +355,98 @@ class LineElement extends ArrayElement {
     (why we need nothing?)
 ** Traits
 ** Case class and pattern matching
+*** A simple sample
+abstract class Expr
+case class Var(name: String) extends Expr
+case class Number(num: Double) extends Expr
+case class UnOp(operator: String, arg: Expr) extends Expr
+case class BinOp(operator: String, left: Expr, right: Expr) extends Expr
+**** a factory method with name of the class
+val op = Binary("+", Number(1), Var("x"))
+**** all argument in the parameter list get a val prefix
+v.name, op.operator
+**** compiler adds hashCode, toString and equals
+**** copy method
+***** make a new instance
+***** use the same value if no specifiy
+op.copy(operator = "-")
+*** pattern matching
+simplification rules:
+def simplifyTop(expr: Expr): Expr = expr match {
+  case UnOp("-", UnOp("-", e)) => e
+  // Double negation
+  case BinOp("+", e, Number(0)) => e // Adding zero
+  case BinOp("*", e, Number(1)) => e // Multiplying by one
+  case _ => expr 
+}
+*** kinds of patterns
+**** wild pattern
+expr match {
+ case BinOp(_, _, _) => println(expr +" is a binary operation")
+ case _ => println("It's something else")
+}
+**** constant pattern
+def describe(x: Any) = x match {
+  case 5 => "five"
+  case true => "truth"
+  case "hello" => "hi!"
+  case Nil => "the empty list"
+  case _ => "something else"
+}
+**** variable pattern
+expr match {
+  case 0 => "zero"
+  case somethingElse => "not zero: "+ somethingElse
+}
+**** constructor pattern (deep)
+expr match {
+  case BinOp("+", e, Number(0)) => println("a deep match")
+  case _ =>
+}
+**** sequence pattern
+expr match {
+  case List(0, _, _) => println("found it")
+  case _ =>
+}
+expr match {
+  case List(0, _*) => println("found it")
+  case _ =>
+}
+**** tuple pattern
+expr match {
+  case (a, b, c) => println("matched "+ a + b + c)
+  case _ =>
+}
+**** typed pattern
+def generalSize(x: Any) = x match {
+  case s: String => s.length
+  case m: Map[_, _] => m.size
+  case _ => -1
+}
+def isIntIntMap(x: Any) = x match {
+  case m: Map[Int, Int] => true
+  case _ => false
+} ?
+def isStringArray(x: Any) = x match {
+  case a: Array[String] => "yes"
+  case _ => "no"
+}
+**** variable binding
+expr match {
+  case UnOp("abs", e @ UnOp("abs", _)) => e
+  case _ =>
+}
+*** pattern guards
+def simplifyAdd(e: Expr) = e match {
+  case BinOp("+", x, x) => BinOp("*", x, Number(2))
+  case _ => e
+} ?
+def simplifyAdd(e: Expr) = e match {
+  case BinOp("+", x, y) if x == y => BinOp("*", x, Number(2))
+  case _ => e
+}
+
+
 ** Type parameterize
 ** Abstract member
 ** Implicit conversions and parameters
