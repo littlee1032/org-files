@@ -554,6 +554,127 @@ withDefault(None)
 for ((country, city) <- capitals)
   println("The capital of "+ country +" is "+ city)
 ** Type parameterize
+*** Fuctional queues
+head returns the first element of the queue
+tail returns a new queue with a given element
+enqueue appended at the end
+fully persistent
+
+class SlowAppendQueue[T](elems: List[T]) { // Not efficient
+  def head = elems.head
+  def tail = new SlowAppendQueue(elems.tail)
+  def enqueue(x: T) = new SlowAppendQueue(elems ::: List(x))
+}
+
+class SlowHeadQueue[T](smele: List[T]) { // Not efficient
+  // smele is elems reversed
+  def head = smele.last
+  def tail = new SlowHeadQueue(smele.init)
+  def enqueue(x: T) = new SlowHeadQueue(x :: smele)
+}
+
+class Queue[T](
+  private val leading: List[T],
+  private val trailing: List[T]
+) {
+  private def mirror =
+    if (leading.isEmpty)
+      new Queue(trailing.reverse, Nil)
+    else
+      this
+  def head = mirror.leading.head
+  def tail = {
+    val q = mirror
+    new Queue(q.leading.tail, q.trailing)
+  }
+  def enqueue(x: T) =
+  new Queue(leading, x :: trailing)
+}
+
+*** Information hiding
+The efficiency is paid for by exposing a needlessly detailed implementation.
+The Queue constructor, which is globally accessible, takes two lists as parameters, where one is
+reversed—hardly an intuitive representation of a queue.
+**** Private contructors and factory methods
+class Queue[T] private (
+  private val leading: List[T],
+  private val trailing: List[T]
+)
+def this(elems: T*) = this(elems.toList, Nil)
+
+object Queue {
+  // constructs a queue with initial elements ‘xs’
+  def apply[T](xs: T*) = new Queue[T](xs.toList, Nil)
+}
+Queue(1, 2, 3) ===> Queue.apply(1, 2, 3)
+
+**** An alternative: private classes
+Another, more radical way is to hide the class itself
+and only export a trait that reveals the public interface
+of the class.
+
+trait Queue[T] {
+  def head: T
+  def tail: Queue[T]
+  def enqueue(x: T): Queue[T]
+}
+object Queue {
+  def apply[T](xs: T*): Queue[T] =
+    new QueueImpl[T](xs.toList, Nil)
+  private class QueueImpl[T](
+    private val leading: List[T],
+    private val trailing: List[T]
+  ) extends Queue[T] {
+    def mirror =
+    if (leading.isEmpty)
+      new QueueImpl(trailing.reverse, Nil)
+    else
+      this
+    def head: T = mirror.leading.head
+    def tail: QueueImpl[T] = {
+      val q = mirror
+      new QueueImpl(q.leading.tail, q.trailing)
+    }
+    def enqueue(x: T) =
+      new QueueImpl(leading, x :: trailing)
+  }
+}
+
+*** Variance annotations
+You cannot create variables of type Queue
+def doesNotCompile(q: Queue) {}
+def doesCompile(q: Queue[AnyRef]) {}
+
+Questions raised:
+Covariant: if S is a subtype of type T, then should Queue[S] be considered a subtype of Queue[T]?
+
+Scala by default is non-variant: A Queue[String] would not be usable as a Queue[AnyRef].
+But you can demand that by:
+trait Queue[+T] { ... }
+
+Contravariant: if T is a subtype of type S, this would imply that Queue[S] is a sub-type of Queue[T]
+trait Queue[-T] { ... }
+
+In a pure functional world, many types are natually covariant. But in mutable data:
+
+class Cell[T](init: T) {
+  private[this] var current = init
+  def get = current
+  def set(x: T) { current = x }
+}
+
+val c1 = new Cell[String]("abc")
+val c2: Cell[Any] = c1
+c2.set(1)
+val s: String = c1.get
+
+Cell.scala:7: error: covariant type T occurs in
+contravariant position in type T of value x
+def set(x: T) = current = x
+           ˆ
+*** Checking variance annotations
+*** Lower bounds
+
 ** Abstract member
 ** Implicit conversions and parameters
 ** Implementing lists
