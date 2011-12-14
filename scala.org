@@ -588,7 +588,7 @@ class Queue[T](
     new Queue(q.leading.tail, q.trailing)
   }
   def enqueue(x: T) =
-  new Queue(leading, x :: trailing)
+    new Queue(leading, x :: trailing)
 }
 
 *** Information hiding
@@ -674,6 +674,29 @@ def set(x: T) = current = x
            ˆ
 *** Checking variance annotations
 *** Lower bounds
+class Queue[+T] (private val leading: List[T],
+  private val trailing: List[T] ) {
+  def enqueue[U >: T](x: U) =
+    new Queue[U](leading, x :: trailing) // ...
+}
+
+*** Contravariance
+trait OutputChannel[-T] {
+  def write(x: T)
+}
+
+Liskov Substitution Principle:
+It is safe to assume that a type T is a subtype of a type U if you can sub-
+stitute a value of type T wherever a value of type U is required
+The principle holds if T supports the same operations as U and all of T’s 
+operations require less and provide more than the corresponding operations 
+in U.
+
+S => T
+
+trait Function1[-S, +T] {
+  def apply(x: S): T
+}
 
 ** Abstract member
 ** Implicit conversions and parameters
