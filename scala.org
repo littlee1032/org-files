@@ -860,5 +860,73 @@ maxListImpParm(List(1.5, 5.2, 10.7, 3.14159))
 
 ** Implementing lists
 ** Actor and concurrency
+share nothing, message passing
+*** actor: thread-like entity with a mailbox for receiving messages
+import scala.actors._
+object SillyActor extends Actor {
+  def act() {
+    for (i <- 1 to 5) {
+      println("I'm acting!")
+      Thread.sleep(1000)
+    }
+  }
+}
+SillyActor.start(); SeriousActor.start()
+
+val seriousActor2 = actor {
+  for (i <- 1 to 5)
+    println("That is the question.")
+  Thread.sleep(1000)
+}
+
+How communicate?
+
+val echoActor = actor {
+  while (true) {
+    receive {
+      case msg => println("received message: "+ msg)
+    }
+  }
+}
+
+echoActor ! "hi there"
+
+*** react: Better performance through thread reuse
+**** no return, no need tp preserve the call stack
+object NameResolver extends Actor {
+import java.net.{InetAddress, UnknownHostException}
+  def act() {
+    react {
+      case (name: String, actor: Actor) =>
+        actor ! getIp(name)
+        act()
+      case "EXIT" =>
+        println("Name resolver exiting.")
+        // quit
+      case msg =>
+        println("Unhandled message: "+ msg)
+        act()
+    }
+  }
+  def getIp(name: String): Option[InetAddress] = {
+    try {
+      Some(InetAddress.getByName(name))
+    } catch {
+      case _:UnknownHostException => None
+    }
+  }
+}
+
+scala> NameResolver ! ("www.scala-lang.org", self)
+scala> self.receiveWithin(0) { case x => x }
+res2: Any = Some(www.scala-lang.org/128.178.154.102)
+scala> NameResolver ! ("wwwwww.scala-lang.org", self)
+scala> self.receiveWithin(0) { case x => x }
+res4: Any = None
+*** Good actor style
+**** Actors should not block
+**** Communicate with actors only via messages
+**** Prefer immutable messages
+**** Make messages self-contained
 * Resources
 ** [[https://wiki.scala-lang.org/display/SW/ScalaDays%2B2011%2BResources][Scala Days 2011]]
