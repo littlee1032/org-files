@@ -127,7 +127,7 @@
 *** Methods
 *** Local functions (another solution for private)
     def processFile(filename: String, width: Int) {
-      def processLine(filename: String/*, width: Int, line: String*/) {
+      def processLine(/*filename: String, width: Int, */line: String) {
         if (line.length > width)
           println(filename + ": " + line)
       }
@@ -135,6 +135,11 @@
       for (line <- source.getLines()) {
         processLine(filename, width, line)
       }
+    }
+
+    def processLine(line: String) {
+      if (line.length > width)
+        println(filename + ": " + line)
     }
 *** First-class functions
     var increase = (x: Int) => x + 1
