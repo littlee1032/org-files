@@ -1,0 +1,8 @@
+* 2012
+** TODO Learning Org mode
+** TODO 100 POJ problems
+** TODO TAOCP
+* 2012-07-27
+** TODO Separation
+** TODO Scan Hu Kou Ben
+** TODO Pick GF
