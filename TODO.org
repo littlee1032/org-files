@@ -3,6 +3,135 @@
 ** TODO 100 POJ problems
 ** TODO TAOCP
 * 2012-07-27
-** TODO Separation
-** TODO Scan Hu Kou Ben
-** TODO Pick GF
+** DONE Separation
+** DONE Scan Hu Kou Ben
+** DONE Pick GF
+* 2012-07-30
+** DONE VPN
+** DONE git perforce
+** DONE code checkout
+* 2012-07-31
+** DONE code compile and test
+** DONE Spring warm up
+** DONE Subscription warm up
+** DONE Promotion engine warm up
+* 2012-08-01
+** DONE Git local repos for Promotion
+* 2012-08-02
+** DONE Sabrix warm up
+** DONE Add property bag on CouponItem
+** DONE Add CartBundleLineItem offerId
+* 2012-08-03
+** DONE Virgo warm up
+** DONE equinox warm up
+* 2012-08-06
+** DONE Catagory ask v0.1 complete (2012-08-13)
+* 2012-08-07
+** DONE Animal machine setup (2012-08-13)
+** DONE CatalogClient test (2012-08-13)
+** DONE rsync ignore configuration file(eclipse, Finder, git) (2012-08-16, using patch)
+* 2012-08-13
+** DONE rating service setup
+* 2012-08-14
+** DONE Sabrix debug
+** DONE Exception Han
+* 2012-08-16
+** DONE rating service test case
+* 2012-08-20
+** DONE price new test
+** DONE shipinfo put into consideration
+** DONE keymaster warm up
+* 2012-08-23
+** DONE Shipinfo from address
+** DONE Curcreatrency take into consideration
+** DONE Add totalDiscountAmount
+* 2012-09-04
+** DONE Put rating on Neclues app
+* Target
+** DONE entitlement, (or pid)
+** DONE offer level promotion
+** DONE offerRating
+** DONE 409 stacktrace infos
+* next-week
+** DONE docs for error code
+
+** DONE a better currency system
+** DONE a workable environment for test
+** DONE Bundle promotion and test cases
+
+* 2012-11-09
+** DONE discount on one item then quantity
+
+** DONE use fusion.catalog url
+* 2012-11-15
+** DONE add promotion counter in lookupdb
+*** TODO dataSource LOOKUPDB
+*** DONE PromotionUsage.java
+*** DONE PromotionUsage.xml
+*** DONE context-cache.xml
+*** DONE context-sharding Mapper Registry
+*** DONE PromotionUsage.sql
+*** DONE UT
+*** TODO Service in rating?
+* Wish-list
+** DONE currency system
+** DONE price logic
+** DONE offer preprocessor: merge
+** DONE bundle preprocessor: merge
+** DONE Offer category
+** TODO Universal catalog, identity and rating client
+** DONE subscription and promotion
+** DONE cart level promotion
+** DONE COUPON
+** DONE Inprocess call identity
+** TODO Time compare issue: GMT
+** TODO Restrictions
+*** TODO Age restriction
+*** DONE Base game restriction
+*** DONE Quantity restriction
+*** DONE Take entitlements on cart into consideration
+*** DONE Country Purchasable
+** DONE ShippingMethod
+*** DONE Shipping goods count
+*** DONE Move shipping fee service out
+** DONE Check product type of response from keymaster
+** DONE Build you own bundle
+** DONE Bundle promotion not merge
+** DONE rating.db service
+** DONE Expose restriction service
+** DONE Catelog client for testing
+** DONE userID to pid
+** DONE price pickup logic
+** TODO recommendation
+** DONE new promotion model
+** DONE Promotion usage calculate
+** DONE Return promotion usage
+** TODO Return promotion not in use
+* 2012-12-17
+** DONE Cart Entry Id mapping
+** DONE find discount use Discount structure
+* 2012-12-26
+** DONE Performance test script
+** DONE property bag set
+** DONE StoreId StoreGroupId
+* 2013-01-06
+** DONE catalog request header remove
+** DONE shard id add, chechsum = null
+** DONE bug fixes
+* 2013-02 ...
+** DONE shipping counts
+** DONE restriction
+* 2013-03
+** DONE memcached
+** DONE promotion type refactor
+* 2013-03-29
+** DONE shippingfee for DE
+** TODO server-side xml validation
+* 2013-04
+** TODO cache rate rule
+** TODO promotion rule usage rethink
+* 2013-09-26
+** mvp refund, getInvoice, payment filter
+** refund after 1000
+* Read-list
+** TODO http://confluence.ea.com/display/EADigital/Catalog+Product+Requirements
